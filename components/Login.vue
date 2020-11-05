@@ -1,5 +1,5 @@
 <template>
-  <v-card width="400" class="mx-auto mt-5">
+  <v-card class="mx-auto mt-5">
     <v-card-title>
       <h1 class="display-1">Login</h1>
     </v-card-title>
@@ -30,10 +30,8 @@
 </template>
 
 <script>
-import ApiService from '@/services/ApiService.js'
-
 export default {
-  name: 'LoginPage',
+  name: 'Login',
   data() {
     return {
       userCredentials: {
@@ -45,9 +43,7 @@ export default {
   },
   methods: {
     async login() {
-      const { username, password } = this.userCredentials
-      await ApiService.login(username, password)
-      console.log(await ApiService.getOrders())
+      await this.$store.dispatch('user/login', this.userCredentials)
     },
   },
 }

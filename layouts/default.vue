@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -42,9 +42,7 @@
       </v-btn> -->
     </v-app-bar>
     <v-main>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-main>
     <!-- <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
@@ -71,29 +69,32 @@ export default {
     return {
       clipped: true,
       drawer: true,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Orders',
-          to: '/',
-        },
-        {
-          icon: 'mdi-login',
-          title: 'Login',
-          to: '/login',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Logout',
-          to: '/inspire',
-        },
-      ],
+      fixed: true,
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Chainvoice: Invoicing on Blockchain',
     }
+  },
+  computed: {
+    items() {
+      const authenticated = this.$store.state.user.user.authenticated
+      const pages = [
+        {
+          icon: 'mdi-login',
+          title: 'Welcome',
+          to: '/',
+        },
+      ]
+      if (authenticated) {
+        pages.push({
+          icon: 'mdi-cart',
+          title: 'Orders',
+          to: '/orders',
+        })
+      }
+      return pages
+    },
   },
 }
 </script>
