@@ -40,6 +40,7 @@ export default {
   props: {
     order: {
       type: Object,
+      default: () => {},
     },
   },
 }
