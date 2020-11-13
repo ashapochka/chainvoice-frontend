@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService'
 import utils from '@/services/utils'
 
 export const state = () => ({
@@ -23,7 +22,7 @@ export const actions = {
   async fetchMany({ commit, dispatch }) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      const response = await ApiService.getOrders()
+      const response = await this.$api.getOrders()
       commit('SET_ORDERS', response.data)
     } catch (error) {
       utils.handleApiError(error, dispatch)
@@ -32,7 +31,7 @@ export const actions = {
   async fetchOne({ commit, dispatch }, orderUid) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      const response = await ApiService.getOrder(orderUid)
+      const response = await this.$api.getOrder(orderUid)
       commit('SET_CURRENT_ORDER', response.data)
     } catch (error) {
       utils.handleApiError(error, dispatch)
@@ -41,7 +40,7 @@ export const actions = {
   async createRandom({ commit, dispatch }) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      const response = await ApiService.createRandomOrder()
+      const response = await this.$api.createRandomOrder()
       commit('ADD_ORDER', response.data)
     } catch (error) {
       utils.handleApiError(error, dispatch)

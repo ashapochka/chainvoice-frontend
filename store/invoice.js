@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService'
 import utils from '@/services/utils'
 
 export const state = () => ({
@@ -16,7 +15,7 @@ export const actions = {
   async fetchMany({ commit, dispatch }, orderUid) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      const response = await ApiService.getInvoices(orderUid)
+      const response = await this.$api.getInvoices(orderUid)
       const invoices = response.data
       invoices.sort((a, b) => {
         if (a.state !== 'CANCELED') return -1
@@ -26,7 +25,7 @@ export const actions = {
       const promises = invoices.map(async (invoice) => {
         return {
           invoice,
-          response: await ApiService.getInvoiceBlockchainState(invoice.uid),
+          response: await this.$api.getInvoiceBlockchainState(invoice.uid),
         }
       })
       const results = await Promise.all(promises)
@@ -42,7 +41,7 @@ export const actions = {
   async create({ commit, dispatch }, orderUid) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      await ApiService.createInvoice(orderUid)
+      await this.$api.createInvoice(orderUid)
     } catch (error) {
       utils.handleApiError(error, dispatch)
     }
@@ -50,7 +49,7 @@ export const actions = {
   async publish({ commit, dispatch }, invoice) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      await ApiService.publishInvoice(invoice.uid)
+      await this.$api.publishInvoice(invoice.uid)
     } catch (error) {
       utils.handleApiError(error, dispatch)
     }
@@ -58,7 +57,7 @@ export const actions = {
   async cancel({ commit, dispatch }, invoice) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      await ApiService.cancelInvoice(invoice.uid)
+      await this.$api.cancelInvoice(invoice.uid)
     } catch (error) {
       utils.handleApiError(error, dispatch)
     }

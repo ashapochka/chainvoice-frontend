@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService'
 import utils from '@/services/utils'
 import _ from 'lodash'
 
@@ -18,7 +17,7 @@ export const actions = {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
       const promises = catalogUids.map((catalogUid) => {
-        return ApiService.getCatalogItems(catalogUid)
+        return this.$api.getCatalogItems(catalogUid)
       })
       const results = await Promise.all(promises)
       const catalogItems = _.flatten(results.map((response) => response.data))

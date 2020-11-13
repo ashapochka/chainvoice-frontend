@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService'
 import utils from '@/services/utils'
 
 export const state = () => ({
@@ -22,10 +21,10 @@ export const mutations = {
 export const actions = {
   async login({ commit, dispatch }, { username, password }) {
     try {
-      const accessToken = await ApiService.login(username, password)
+      const accessToken = await this.$api.login(username, password)
       commit('SET_AUTHENTICATED', true)
       if (accessToken) {
-        const response = await ApiService.getCurrentUser()
+        const response = await this.$api.getCurrentUser()
         const user = response.data
         commit('SET_USER', {
           authenticated: true,
@@ -43,11 +42,11 @@ export const actions = {
       authenticated: false,
       accessToken: null,
     })
-    ApiService.setAccessToken(null)
+    this.$api.setAccessToken(null)
   },
   ensureAuthentication({ getters }) {
     if (getters.isAuthenticated && getters.getAccessToken) {
-      ApiService.setAccessToken(getters.getAccessToken)
+      this.$api.setAccessToken(getters.getAccessToken)
     } else {
       throw new Error('User is not authenticated yet')
     }

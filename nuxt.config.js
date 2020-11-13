@@ -18,7 +18,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [{ src: '~/plugins/vuex-persist', ssr: false }],
+  plugins: [{ src: '~/plugins/vuex-persist', ssr: false }, '~/plugins/api'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -32,7 +32,7 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: ['@nuxtjs/axios'],
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
@@ -60,5 +60,31 @@ export default {
         _: 'lodash',
       }),
     ],
+  },
+
+  axios: {
+    baseURL: 'http://localhost:8000', // Used as fallback if no runtime config is provided
+    headers: {
+      common: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    },
+    retry: { retries: 3 },
+    debug: true,
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL:
+        process.env.BROWSER_BASE_URL ||
+        'https://softserveinc-demo-chainvoice.azurewebsites.net/api',
+    },
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL,
+    },
   },
 }

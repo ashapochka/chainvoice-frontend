@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService'
 import utils from '@/services/utils'
 
 export const state = () => ({
@@ -25,7 +24,7 @@ export const actions = {
   async fetchMany({ commit, dispatch }, invoiceUid) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      const response = await ApiService.getPayments(invoiceUid)
+      const response = await this.$api.getPayments(invoiceUid)
       commit('UPDATE_PAYMENTS', response.data)
     } catch (error) {
       utils.handleApiError(error, dispatch)
@@ -34,7 +33,7 @@ export const actions = {
   async create({ commit, dispatch }, { invoiceUid, amount }) {
     try {
       dispatch('user/ensureAuthentication', {}, { root: true })
-      const response = await ApiService.createPayment(invoiceUid, amount)
+      const response = await this.$api.createPayment(invoiceUid, amount)
       commit('UPDATE_PAYMENTS', [response.data])
     } catch (error) {
       utils.handleApiError(error, dispatch)
