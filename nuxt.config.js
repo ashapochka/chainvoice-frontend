@@ -2,6 +2,10 @@ import colors from 'vuetify/es5/util/colors'
 import webpack from 'webpack'
 
 export default {
+  server: {
+    port: 8080, // default: 3000
+    host: '0.0.0.0', // default: localhost
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - chainvoice-frontend',
@@ -76,9 +80,7 @@ export default {
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL:
-        process.env.BROWSER_BASE_URL ||
-        'https://softserveinc-demo-chainvoice.azurewebsites.net/api',
+      browserBaseURL: process.env.BROWSER_BASE_URL,
     },
   },
 

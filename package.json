@@ -13,10 +13,14 @@
     "test:unit": "cross-env TEST=unit ava ./test/specs/**/*",
     "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*"
   },
+  "engines": {
+    "node": ">10.0.0"
+  },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
     "lodash": "^4.17.20",
     "nuxt": "^2.14.6",
     "qs": "^6.9.4",
