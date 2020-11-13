@@ -9,7 +9,7 @@
       </v-col>
     </v-row>
     <v-row v-for="order in orders" :key="order.uid" justify="center">
-      <v-col cols="8">
+      <v-col cols="12">
         <Order :order="order" />
       </v-col>
     </v-row>

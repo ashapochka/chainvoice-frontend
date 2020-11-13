@@ -3,8 +3,8 @@
     <v-card-title class="headline">Welcome, {{ userTitle }}</v-card-title>
     <v-card-text>
       <p>
-        You can proceed to the
-        <NuxtLink to="/orders">list of orders</NuxtLink> now.
+        You can proceed to the <NuxtLink to="/parties">parties</NuxtLink> or to
+        the <NuxtLink to="/orders">list of orders</NuxtLink> now.
       </p>
     </v-card-text>
     <v-card-actions>

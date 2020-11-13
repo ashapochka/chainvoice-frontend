@@ -79,20 +79,29 @@ export default {
   computed: {
     items() {
       const authenticated = this.$store.state.user.user.authenticated
-      const pages = [
-        {
-          icon: 'mdi-login',
-          title: 'Welcome',
-          to: '/',
-        },
-      ]
+      const pages = []
+      pages.push({
+        icon: 'mdi-login',
+        title: 'Welcome',
+        to: '/',
+      })
       if (authenticated) {
+        pages.push({
+          icon: 'mdi-domain',
+          title: 'Parties',
+          to: '/parties',
+        })
         pages.push({
           icon: 'mdi-cart',
           title: 'Orders',
           to: '/orders',
         })
       }
+      pages.push({
+        icon: 'mdi-bell',
+        title: 'Notifications',
+        to: '/notifications',
+      })
       return pages
     },
   },

@@ -20,4 +20,23 @@ export default {
     }
     dispatch('notification/add', notification, { root: true })
   },
+  formatMoneyAmount(amount) {
+    if (!amount) {
+      return 'Unknown'
+    } else {
+      return '$' + amount.toFixed(2)
+    }
+  },
+  updateObjects(objects, newObjects) {
+    for (const newObject of newObjects) {
+      const index = objects.findIndex(
+        (object) => object && object.uid === newObject.uid
+      )
+      if (index < 0) {
+        objects.push(newObject)
+      } else {
+        Object.assign(objects[index], newObject)
+      }
+    }
+  },
 }

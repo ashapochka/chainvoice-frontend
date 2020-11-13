@@ -2,14 +2,13 @@ export const state = () => ({
   notifications: [],
 })
 
-let nextId = 1
-
 // noinspection JSUnusedGlobalSymbols
 export const mutations = {
   PUSH(state, notifications) {
-    state.notifications.push({
+    state.notifications.unshift({
       ...notifications,
-      id: nextId++,
+      id: state.notifications.length,
+      createdAt: new Date(),
     })
   },
   DELETE(state, notificationToRemove) {

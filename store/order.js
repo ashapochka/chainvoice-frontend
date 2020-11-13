@@ -3,6 +3,7 @@ import utils from '@/services/utils'
 
 export const state = () => ({
   orders: [],
+  currentOrder: {},
 })
 
 // noinspection JSUnusedGlobalSymbols
@@ -13,6 +14,9 @@ export const mutations = {
   ADD_ORDER(state, order) {
     state.orders.unshift(order)
   },
+  SET_CURRENT_ORDER(state, order) {
+    state.currentOrder = order
+  },
 }
 
 export const actions = {
@@ -21,6 +25,15 @@ export const actions = {
       dispatch('user/ensureAuthentication', {}, { root: true })
       const response = await ApiService.getOrders()
       commit('SET_ORDERS', response.data)
+    } catch (error) {
+      utils.handleApiError(error, dispatch)
+    }
+  },
+  async fetchOne({ commit, dispatch }, orderUid) {
+    try {
+      dispatch('user/ensureAuthentication', {}, { root: true })
+      const response = await ApiService.getOrder(orderUid)
+      commit('SET_CURRENT_ORDER', response.data)
     } catch (error) {
       utils.handleApiError(error, dispatch)
     }
