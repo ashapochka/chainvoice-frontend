@@ -26,12 +26,12 @@ class ApiClient {
     })
     // noinspection JSUnresolvedVariable
     const accessToken = response.data.access_token
-    this.ax.setAccessToken(accessToken)
+    this.setAccessToken(accessToken)
     return accessToken
   }
 
   logout() {
-    this.ax.setAccessToken(null)
+    this.setAccessToken(null)
   }
 
   getCurrentUser() {
