@@ -37,7 +37,13 @@
                   <tbody>
                     <tr v-for="(value, name) in payment" :key="name">
                       <td>{{ name }}</td>
-                      <td>{{ value }}</td>
+                      <td>
+                        <nuxt-link
+                          v-if="name === 'blockchain_tx_hash'"
+                          :to="'/transactions/#' + value"
+                          >{{ value }}</nuxt-link
+                        ><span v-else>{{ value }}</span>
+                      </td>
                     </tr>
                   </tbody>
                 </template>
