@@ -96,6 +96,11 @@ export default {
           title: 'Orders',
           to: '/orders',
         })
+        pages.push({
+          icon: 'mdi-link-box',
+          title: 'Transactions',
+          to: '/transactions',
+        })
       }
       pages.push({
         icon: 'mdi-bell',

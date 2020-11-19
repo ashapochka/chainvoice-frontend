@@ -129,6 +129,13 @@ class ApiClient {
       params: { invoice_uid: invoiceUid },
     })
   }
+
+  // =================
+  // ledger api
+  // =================
+  getTransactionsPaid() {
+    return this.ax.get(`/ledger/tx/paid/`)
+  }
 }
 
 export { ApiClient }
