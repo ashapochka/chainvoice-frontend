@@ -1,6 +1,6 @@
 <!--suppress JSUnresolvedVariable -->
 <template>
-  <v-card :id="tx['hash']">
+  <v-card>
     <v-card-title> TX {{ tx['hash'] }} </v-card-title>
     <v-card-subtitle>
       Block:

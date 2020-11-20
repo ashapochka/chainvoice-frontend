@@ -1,6 +1,11 @@
 <template>
   <v-container grid-list-md>
-    <v-row v-for="tx in transactions" :key="tx['hash']" justify="center">
+    <v-row
+      v-for="tx in transactions"
+      :id="tx['hash']"
+      :key="tx['hash']"
+      justify="center"
+    >
       <v-col cols="12">
         <Transaction :tx="tx" />
       </v-col>
