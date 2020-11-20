@@ -78,30 +78,30 @@ export default {
   },
   computed: {
     items() {
-      const authenticated = this.$store.state.user.user.authenticated
+      // const authenticated = this.$store.state.user.user.authenticated
       const pages = []
       pages.push({
         icon: 'mdi-login',
         title: 'Welcome',
         to: '/',
       })
-      if (authenticated) {
-        pages.push({
-          icon: 'mdi-domain',
-          title: 'Parties',
-          to: '/parties',
-        })
-        pages.push({
-          icon: 'mdi-cart',
-          title: 'Orders',
-          to: '/orders',
-        })
-        pages.push({
-          icon: 'mdi-link-box',
-          title: 'Transactions',
-          to: '/transactions',
-        })
-      }
+      // if (authenticated) {
+      pages.push({
+        icon: 'mdi-domain',
+        title: 'Parties',
+        to: '/parties',
+      })
+      pages.push({
+        icon: 'mdi-cart',
+        title: 'Orders',
+        to: '/orders',
+      })
+      pages.push({
+        icon: 'mdi-link-box',
+        title: 'Transactions',
+        to: '/transactions',
+      })
+      // }
       pages.push({
         icon: 'mdi-bell',
         title: 'Notifications',

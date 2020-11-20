@@ -48,7 +48,8 @@ export const actions = {
     if (getters.isAuthenticated && getters.getAccessToken) {
       this.$api.setAccessToken(getters.getAccessToken)
     } else {
-      throw new Error('User is not authenticated yet')
+      // throw new Error('User is not authenticated yet')
+      this.$api.setAccessToken(null)
     }
   },
 }

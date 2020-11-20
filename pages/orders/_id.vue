@@ -8,6 +8,7 @@
           <v-btn
             :loading="creatingInvoice"
             :disabled="
+              !authenticated ||
               creatingInvoice ||
               publishingInvoice ||
               payingInvoice ||
@@ -20,6 +21,7 @@
           <v-btn
             :loading="publishingInvoice"
             :disabled="
+              !authenticated ||
               creatingInvoice ||
               publishingInvoice ||
               payingInvoice ||
@@ -32,6 +34,7 @@
           <v-btn
             :loading="payingInvoice"
             :disabled="
+              !authenticated ||
               creatingInvoice ||
               publishingInvoice ||
               payingInvoice ||
@@ -44,6 +47,7 @@
           <v-btn
             :loading="cancelingInvoice"
             :disabled="
+              !authenticated ||
               creatingInvoice ||
               publishingInvoice ||
               payingInvoice ||
@@ -117,11 +121,11 @@ export default {
       cancelingInvoice: false,
     }
   },
-  fetchOnServer: false,
   computed: mapState({
     order: (state) => state.order.currentOrder,
     orderItems: (state) => state.orderItem.orderItems,
     invoices: (state) => state.invoice.invoices,
+    authenticated: (state) => state.user.user.authenticated,
   }),
   methods: {
     alertOn(text) {

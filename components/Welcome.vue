@@ -9,6 +9,7 @@
         (Quorum) can be successfully used to enable invoice tracking and
         payments with digital currencies.
       </p>
+      <p>You can browse the demo in the read-only mode without login.</p>
       <p>
         Found a bug? Report it on the github
         <a

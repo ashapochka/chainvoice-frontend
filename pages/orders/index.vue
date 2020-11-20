@@ -4,7 +4,9 @@
       <v-col>
         <v-toolbar dark>
           <v-btn @click="refreshOrders">Refresh Orders</v-btn>
-          <v-btn @click="createRandomOrder">Create Random Order</v-btn>
+          <v-btn :disabled="!authenticated" @click="createRandomOrder"
+            >Create Random Order</v-btn
+          >
         </v-toolbar>
       </v-col>
     </v-row>
@@ -30,6 +32,7 @@ export default {
   },
   computed: mapState({
     orders: (state) => state.order.orders,
+    authenticated: (state) => state.user.user.authenticated,
   }),
   methods: {
     async refreshOrders() {
